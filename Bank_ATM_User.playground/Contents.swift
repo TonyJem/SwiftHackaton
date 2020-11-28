@@ -13,6 +13,40 @@ protocol UserData {
   var userPhoneBalance: Float { get set}    //Баланс телефона
 }
 
+// MARK: - User Class: -
+class User: UserData {
+    var userName: String
+    var userCardId: String
+    var userCardPin: Int
+    var userCash: Float
+    var userBankDeposit: Float
+    var userPhone: String
+    var userPhoneBalance: Float
+    
+    init(userName: String,
+         userCardId: String,
+         userCardPin: Int,
+         userCash: Float,
+         userBankDeposit: Float,
+         userPhone: String,
+         userPhoneBalance: Float) {
+        self.userName = userName
+        self.userCardId = userCardId
+        self.userCardPin = userCardPin
+        self.userCash = userCash
+        self.userBankDeposit = userBankDeposit
+        self.userPhone = userPhone
+        self.userPhoneBalance = userPhoneBalance
+    }
+}
+
+let egor_pupkin: User = User(userName: "Egor Pupkin",
+                                 userCardId: "3339 0039 3312 2222",
+                                 userCardPin: 1234,
+                                 userCash: 2234.34,
+                                 userBankDeposit: 4994.4,
+                                 userPhone: "+7(889)-393-43-44",
+                                 userPhoneBalance: -34.44)
 
 
 // MARK: - Что должно быть реализовано: -
