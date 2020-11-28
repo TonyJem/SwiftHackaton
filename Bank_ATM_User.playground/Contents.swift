@@ -1,7 +1,6 @@
 import UIKit
 
 // MARK: - Как представлены пользовательские данные: -
-
 // Абстракция данных пользователя
 protocol UserData {
   var userName: String { get }    //Имя пользователя
@@ -52,12 +51,10 @@ let egor_pupkin: User = User(userName: "Egor Pupkin",
 // MARK: - Что должно быть реализовано: -
 // Тексты ошибок
 enum TextErrors: String {
- 
 }
  
 // Виды операций, выбранных пользователем (подтверждение выбора)
 enum DescriptionTypesAvailableOperations: String {
- 
 //    ToDo: Запрос баланса на банковском депозите:
     
 //    ToDo: Снятие наличных с банковского депозита:
@@ -71,12 +68,10 @@ enum DescriptionTypesAvailableOperations: String {
  
 // Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
 enum UserActions {
- 
 }
  
 // Способ оплаты/пополнения наличными или через депозит
 enum PaymentMethod {
- 
 }
 
 
@@ -90,14 +85,9 @@ class ATM {
   private let paymentMethod: PaymentMethod?
  
   init(userCardId: String, userCardPin: Int, someBank: BankApi, action: UserActions, paymentMethod: PaymentMethod? = nil) {
- 
- 
-    sendUserDataToBank(userCardId: userCardId, userCardPin: userCardPin, actions: action, payment: paymentMethod )
   }
  
- 
   public final func sendUserDataToBank(userCardId: String, userCardPin: Int, actions: UserActions, payment: PaymentMethod?) {
- 
   }
 }
 
