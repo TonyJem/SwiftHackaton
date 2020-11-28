@@ -142,10 +142,24 @@ class ATM {
   private let action: UserActions
   private let paymentMethod: PaymentMethod?
  
-  init(userCardId: String, userCardPin: Int, someBank: BankApi, action: UserActions, paymentMethod: PaymentMethod? = nil) {
+  init(userCardId: String,
+       userCardPin: Int,
+       someBank: BankApi,
+       action: UserActions,
+       paymentMethod: PaymentMethod? = nil)
+  {
+    sendUserDataToBank(userCardId: userCardId,
+                       userCardPin: userCardPin,
+                       actions: action,
+                       payment: paymentMethod )
   }
  
-  public final func sendUserDataToBank(userCardId: String, userCardPin: Int, actions: UserActions, payment: PaymentMethod?) {
+  public final func sendUserDataToBank(userCardId: String,
+                                       userCardPin: Int,
+                                       actions: UserActions,
+                                       payment: PaymentMethod?)
+  {
+//    code here...
   }
 }
 
