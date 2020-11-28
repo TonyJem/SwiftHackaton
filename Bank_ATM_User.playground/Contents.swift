@@ -129,7 +129,7 @@ let egor_pupkin: UserData = User(userName: "Egor Pupkin",
                                  userCardId: "3339 0039 3312 2222",
                                  userCardPin: 1234,
                                  userCash: 2234.34,
-                                 userBsnkDeposit: 4994.4,
+                                 userBankDeposit: 4994.4,
                                  userPhone: "+7(889)-393-43-44",
                                  userPhoneBalance: -34.44)
 
