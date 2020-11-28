@@ -28,8 +28,16 @@ class User: UserData {
 }
 
 class Bank: BankApi {
+    
+    private var user: User
+    
+    init(user: User){
+        self.user = user
+    }
+    
     func showUserBalance() {
-        
+        print(askedForBallance)
+        print(user.userBankDeposit)
     }
     
     func showUserToppedUpMobilePhoneCash(cash: Float) {
@@ -89,28 +97,32 @@ class Bank: BankApi {
 
 // Банкомат, с которым мы работаем, имеет общедоступный интерфейс sendUserDataToBank
 class ATM {
-  private let userCardId: String
-  private let userCardPin: Int
-  private var someBank: BankApi
-  private let action: UserActions
-  private let paymentMethod: PaymentMethod?
- 
-  init(userCardId: String,
-       userCardPin: Int,
-       someBank: BankApi,
-       action: UserActions,
-       paymentMethod: PaymentMethod? = nil)
-  {
-    self.userCardId = userCardId
-    self.userCardPin = userCardPin
-    self.someBank = someBank
-    self.action = action
-    self.paymentMethod = paymentMethod
-    self.sendUserDataToBank(userCardId: userCardId,
-                       userCardPin: userCardPin,
-                       actions: action,
-                       payment: paymentMethod )
-  }
+    private let userCardId: String
+    private let userCardPin: Int
+    private var someBank: BankApi
+    private let action: UserActions
+    private let paymentMethod: PaymentMethod?
+    private var requiredAmount: Float?
+    
+    init(userCardId: String,
+         userCardPin: Int,
+         someBank: BankApi,
+         action: UserActions,
+         paymentMethod: PaymentMethod? = nil
+//         requiredAmount: Float
+         )
+    {
+        self.userCardId = userCardId
+        self.userCardPin = userCardPin
+        self.someBank = someBank
+        self.action = action
+        self.paymentMethod = paymentMethod
+//        self.requiredAmount = requiredAmount
+        self.sendUserDataToBank(userCardId: userCardId,
+                                userCardPin: userCardPin,
+                                actions: action,
+                                payment: paymentMethod)
+    }
  
   public final func sendUserDataToBank(userCardId: String,
                                        userCardPin: Int,
@@ -139,7 +151,7 @@ enum TextErrors: String { // Тексты ошибок
  
 // Виды операций, выбранных пользователем (подтверждение выбора)
 enum DescriptionTypesAvailableOperations: String {
-    case askedForBallance
+   case askedForBallance = "You asked for ballance:"
 // Описание типов возможных операций:
 //    Здесь должны лежать тексты всех возможных операций
 //    "Вы запросили балланс ..."
@@ -147,6 +159,10 @@ enum DescriptionTypesAvailableOperations: String {
 //    "Вы запросили пополнить депозит ..."
     
 //    Другими словами: В этом енуме содержатся все ответы на выбор пользователя
+    
+    
+    
+    
     
 //    ЭТО я сюда вставил, ToDo: перекинуть в релевантное место
 //    ToDo: Запрос баланса на банковском депозите:
@@ -195,17 +211,6 @@ enum PaymentMethod {
 //  ToDo: Подсказка: Должно быть перечисление с определенным вложенным типом. Вложеный тип и будет, то что мы принимаем какое то действие.
 }
 
-
-// MARK: - Instances: -
-let egor_pupkin: User = User(userName: "Egor Pupkin",
-                                 userCardId: "3339 0039 3312 2222",
-                                 userCardPin: 1234,
-                                 userCash: 2234.34,
-                                 userBankDeposit: 4994.4,
-                                 userPhone: "+7(889)-393-43-44",
-                                 userPhoneBalance: -34.44)
-
-
 // MARK: - Protocols: -
 protocol UserData {
   var userName: String { get }           //Имя пользователя
@@ -223,6 +228,8 @@ protocol BankApi {
     
 //    Функции выводящие сообщения (своей внутренней логикой не обладают!)
   func showUserBalance() // выводит сообщение о баллансе
+    
+    
 //TODO: Найминг для моих переменных и функций брать отсюда:
   func showUserToppedUpMobilePhoneCash(cash: Float) // сколько кеша положили на телефон, банк обрабатывает данные и выводит соответствующее сообщение
   func showUserToppedUpMobilePhoneDeposite(deposit: Float) // сколько положили на телефон через депозит банка, банк обрабатывает данные и выводит соответствующее сообщение
@@ -268,3 +275,32 @@ protocol BankApi {
 //                 action: .userPressedBalanceBtn) // Сюда так же передавать тип оплаты (при помощи чего пополнить при помощи налички или с депозита, а так же передавать сумму на какю хотим проихвести операцию)
 
 //ToDo: Проявить Свое видение, подумать какие могут возникнуть ошибки при выполнении, расписать как это все реализовать
+
+
+
+// MARK: - Instances: -
+let egor_pupkin: User = User(userName: "Egor Pupkin",
+                                 userCardId: "3339 0039 3312 2222",
+                                 userCardPin: 1234,
+                                 userCash: 2234.34,
+                                 userBankDeposit: 4994.4,
+                                 userPhone: "+7(889)-393-43-44",
+                                 userPhoneBalance: -34.44)
+
+let bankClient = Bank(user: egor_pupkin)
+
+let atm443 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedBalanceBtn
+//                 paymentMethod: .payFromDeposite,
+//                 requiredAmount: 15.0
+                 )
+
+// MARK: - RUN Tests: -
+
+
+print(egor_pupkin.userName)
+print(egor_pupkin.userCardId)
+
+bankClient.showUserBalance()
