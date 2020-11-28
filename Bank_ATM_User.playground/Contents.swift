@@ -79,3 +79,22 @@ protocol BankApi {
   mutating func getCashFromDeposit(cash: Float)
   mutating func putCashDeposit(topUp: Float)
 }
+
+// MARK: - Пример проверки работы : -
+// Пользовательские данные, которые хранятся на сервере банка (данные были внеены, когда пользователь зарегестрировался в банке)
+let egor_pupkin: UserData = User(userName: "Egor Pupkin",
+                                 userCardId: "3339 0039 3312 2222",
+                                 userCardPin: 1234,
+                                 userCash: 2234.34,
+                                 userBsnkDeposit: 4994.4,
+                                 userPhone: "+7(889)-393-43-44",
+                                 userPhoneBalance: -34.44)
+
+//Какой-то банк, в котором зарегистрирован пользователь (в этом банке хранятся данные пользователя)
+let bankClient = BankServer(user: egor_pupkin)
+
+//Текущий банкомат, с которым мы работаем в данный момент / пользователь вводит данные и пытается выполнить некоторую операцию.
+let atm443 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedBalanceBtn)
