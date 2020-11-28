@@ -166,23 +166,31 @@ class ATM {
 
 // MARK: - Описание «сервера» : -
 // Протокол по работе с банком предоставляет доступ к данным пользователя зарегистрированного в банке
+//TODO: Этот протокол должен быть реализован моим классом "Банк"
 protocol BankApi {
-  func showUserBalance()
-  func showUserToppedUpMobilePhoneCash(cash: Float)
-  func showUserToppedUpMobilePhoneDeposite(deposit: Float)
-  func showWithdrawalDeposit(cash: Float)
-  func showTopUpAccount(cash: Float)
-  func showError(error: TextErrors)
+    
+//    Функции выводящие сообщения (своей внутренней логикой не обладают!)
+  func showUserBalance() // выводит сообщение о баллансе
+//TODO: Найминг для моих переменных и функций брать отсюда:
+  func showUserToppedUpMobilePhoneCash(cash: Float) // сколько кеша положили на телефон, банк обрабатывает данные и выводит соответствующее сообщение
+  func showUserToppedUpMobilePhoneDeposite(deposit: Float) // сколько положили на телефон через депозит банка, банк обрабатывает данные и выводит соответствующее сообщение
+  func showWithdrawalDeposit(cash: Float) // Показать сколько пользователь снял с депозита
+  func showTopUpAccount(cash: Float) // Показать на сколько пользователь пополнил депозит
+  func showError(error: TextErrors) // Метод который отвечает за ошибки. Обернуть Все ошики в один метод.
  
-  func checkUserPhone(phone: String) -> Bool
-  func checkMaxUserCash(cash: Float) -> Bool
-  func checkMaxAccountDeposit(withdraw: Float) -> Bool
-  func checkCurrentUser(userCardId: String, userCardPin: Int) -> Bool
- 
-  mutating func topUpPhoneBalanceCash(pay: Float)
-  mutating func topUpPhoneBalanceDeposit(pay: Float)
-  mutating func getCashFromDeposit(cash: Float)
-  mutating func putCashDeposit(topUp: Float)
+//    Функции со своей внутренней логикой:
+  func checkUserPhone(phone: String) -> Bool // Банк проверяет правильный прислали номер телефона, если неправилный то фолс
+  func checkMaxUserCash(cash: Float) -> Bool // Проверяем доступные средства в кармане. Можем ли заплатить столько сколько указываем в переменной кэш
+  func checkMaxAccountDeposit(withdraw: Float) -> Bool // Проверяем доступные средства на депозите. Можем ли снять указанную сумму
+  func checkCurrentUser(userCardId: String, userCardPin: Int) -> Bool // Метод отвечает за проверку самого пользователя
+
+//    Методы отвечающие за получение данных после всех удачно пройденых проверок, и они отвечаю за изменения первичных данных  начальных настройках конкретного Юзера, то есть фиксируются результаты манипулирования с его данными.
+//    ТуДу: Вспомнить что такое мутатинк методы и разобраться для чего они нужны здесь
+// Вроде как мутатинг нужен если юзаем структуры, если все на классах, тогда мутатинг как бы и не причем здесь
+  mutating func topUpPhoneBalanceCash(pay: Float) // Производится вычисление нового значения для балланса телефона и соответсвующего уменьшения колличества кеша
+  mutating func topUpPhoneBalanceDeposit(pay: Float) // Производится вычисление нового значения для балланса телефона и соответсвующего уменьшения колличества средств на депозите
+  mutating func getCashFromDeposit(cash: Float) // Производится уменьшение средств на депозите и увеличение кеша
+  mutating func putCashDeposit(topUp: Float) // Производится уменьшение кеша и увеличение средств на депозите
 }
 
 // MARK: - Пример проверки работы : -
