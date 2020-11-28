@@ -36,8 +36,13 @@ class Bank: BankApi {
     }
     
     func showUserBalance() {
-        print(askedForBallance)
-        print(user.userBankDeposit)
+        let report = """
+            Здравствуйте, \(user.userName),
+            \(DescriptionTypesAvailableOperations.askedForBalance.rawValue)
+            Баланс вашего депозита составляет: \(user.userBankDeposit) рублей.
+            Хорошего дня!
+            """
+        print(report)
     }
     
     func showUserToppedUpMobilePhoneCash(cash: Float) {
@@ -151,7 +156,7 @@ enum TextErrors: String { // Тексты ошибок
  
 // Виды операций, выбранных пользователем (подтверждение выбора)
 enum DescriptionTypesAvailableOperations: String {
-   case askedForBallance = "You asked for ballance:"
+   case askedForBalance = "Вы запросили балланс"
 // Описание типов возможных операций:
 //    Здесь должны лежать тексты всех возможных операций
 //    "Вы запросили балланс ..."
