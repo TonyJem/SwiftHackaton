@@ -168,19 +168,19 @@ class Bank: BankApi {
     }
     
     func checkUserPhone(phone: String) -> Bool {
-        
+        return false
     }
     
     func checkMaxUserCash(cash: Float) -> Bool {
-        
+        return false
     }
     
     func checkMaxAccountDeposit(withdraw: Float) -> Bool {
-        
+        return false
     }
     
     func checkCurrentUser(userCardId: String, userCardPin: Int) -> Bool {
-        
+        return false
     }
     
     func topUpPhoneBalanceCash(pay: Float) {
@@ -216,7 +216,12 @@ class ATM {
        action: UserActions,
        paymentMethod: PaymentMethod? = nil)
   {
-    sendUserDataToBank(userCardId: userCardId,
+    self.userCardId = userCardId
+    self.userCardPin = userCardPin
+    self.someBank = someBank
+    self.action = action
+    self.paymentMethod = paymentMethod
+    self.sendUserDataToBank(userCardId: userCardId,
                        userCardPin: userCardPin,
                        actions: action,
                        payment: paymentMethod )
