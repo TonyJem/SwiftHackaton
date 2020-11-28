@@ -111,6 +111,15 @@ enum DescriptionTypesAvailableOperations: String {
  
 // Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
 enum UserActions {
+    case userPressedBalanceBtn
+    case userPressedCashWithdrawalBtn
+    case userPressedTopUpBankDepositBtn
+    case userPressedTopUpPhoneBalanceBtn
+    
+//    1. Запросить балланс
+//    2. Пополнить счет не телефоне
+//    3. Снять наличные
+//    4. Положить на депозит
 }
  
 // Способ оплаты/пополнения наличными или через депозит
