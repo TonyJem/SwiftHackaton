@@ -29,9 +29,9 @@ import UIKit
 // Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
 enum UserActions {
     case userPressedBalanceBtn //Запросить баланс
-    case userPressedCashWithdrawalBtn (cash: Float)   //Снять наличные
-    case userPressedTopUpBankDepositBtn (cash: Float) //Положить на депозит
-    case userPressedTopUpPhoneBalanceBtn (payment: PaymentMethod, amount: Float) //Пополнить счет на телефоне
+    case userPressedCashWithdrawalBtn(cash: Float)   //Снять наличные
+    case userPressedTopUpBankDepositBtn(cash: Float) //Положить на депозит
+    case userPressedTopUpPhoneBalanceBtn(payment: PaymentMethod, amount: Float) //Пополнить счет на телефоне
 }
 
 // Виды операций, выбранных пользователем (подтверждение выбора)
