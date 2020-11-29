@@ -135,7 +135,18 @@ class Bank: BankApi {
     }
     
     func showError(error: TextErrors) {
-        
+        switch error {
+        case .wrongLogin:
+            print(TextErrors.wrongLogin.rawValue)
+        case .wrongPhoneNr:
+            print(TextErrors.wrongPhoneNr.rawValue)
+        case .notEnoughtCash:
+            print(TextErrors.notEnoughtCash.rawValue)
+        case .tooLowDeposite:
+            print(TextErrors.tooLowDeposite.rawValue)
+        }
+    }
+    
     }
     
     func checkUserPhone(phone: String) -> Bool {
