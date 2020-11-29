@@ -164,22 +164,24 @@ class Bank: BankApi {
     }
     
     func topUpPhoneBalanceCash(pay: Float) {
-        
+        user.userPhoneBalance += pay
+        user.userCash -= pay
     }
     
     func topUpPhoneBalanceDeposit(pay: Float) {
-        
+        user.userPhoneBalance += pay
+        user.userBankDeposit -= pay
     }
     
     func getCashFromDeposit(cash: Float) {
-        
+        user.userCash += cash
+        user.userBankDeposit -= cash
     }
     
     func putCashDeposit(topUp: Float) {
-        
+        user.userBankDeposit += topUp
+        user.userCash -= topUp
     }
-    
-    
 }
 
 // Банкомат, с которым мы работаем, имеет общедоступный интерфейс sendUserDataToBank
