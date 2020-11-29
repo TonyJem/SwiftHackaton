@@ -30,6 +30,23 @@ import UIKit
     //    3. Уточняется от куда пополнить телефон: С депозита или с наличных:
     //    4. Вывести сообщение вы выбрали пополнить баланс телефона на Х сумму через наличные/с депозита. У вас списалось с депозита/с наличных и увеличилась на балансе телефона.
 
+// MARK: - Enums: -
+// Виды операций, выбранных пользователем (подтверждение выбора)
+enum DescriptionTypesAvailableOperations: String {
+    case queryBalance = "Вы запросили баланс на банковском депозите."
+    case queryToppedUpMobilePhoneCash = "Вы запросили пополнение баланса телефона наличными."
+    case queryToppedUpMobilePhoneDeposite = "Вы запросили пополнение баланса телефона с банковского депозита."
+    case queryWithdrawalDeposit = "Вы запросили снятие наличных с банковского депозита."
+    case queryTopUpAccount = "Вы запросили пополнение банковского депозита наличными."
+}
+ 
+// Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
+enum UserActions {
+    case userPressedBalanceBtn           //Запросить баланс
+    case userPressedCashWithdrawalBtn    //Снять наличные
+    case userPressedTopUpBankDepositBtn  //Положить на депозит
+    case userPressedTopUpPhoneBalanceBtn //Пополнить счет не телефоне
+}
 
 // MARK: - Classes: -
 class User: UserData {
@@ -199,7 +216,7 @@ class ATM {
   }
 }
 
-// MARK: - Enums: -
+// MARK: - Not finished Enums: -
 enum TextErrors: String { // Тексты ошибок
     case wrongCardNr = "Wrong Card Number"
 //  Wrong card Nr -> Print text: Здравствуйте Вы неправильно ввели номер карты
@@ -215,22 +232,7 @@ enum TextErrors: String { // Тексты ошибок
 //    4. снять наличные
 }
  
-// Виды операций, выбранных пользователем (подтверждение выбора)
-enum DescriptionTypesAvailableOperations: String {
-    case queryBalance = "Вы запросили баланс на банковском депозите."
-    case queryToppedUpMobilePhoneCash = "Вы запросили пополнение баланса телефона наличными."
-    case queryToppedUpMobilePhoneDeposite = "Вы запросили пополнение баланса телефона с банковского депозита."
-    case queryWithdrawalDeposit = "Вы запросили снятие наличных с банковского депозита."
-    case queryTopUpAccount = "Вы запросили пополнение банковского депозита наличным."
-}
- 
-// Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
-enum UserActions {
-    case userPressedBalanceBtn           //Запросить баланс
-    case userPressedCashWithdrawalBtn    //Снять наличные
-    case userPressedTopUpBankDepositBtn  //Положить на депозит
-    case userPressedTopUpPhoneBalanceBtn //Пополнить счет не телефоне
-}
+
  
 // Способ оплаты/пополнения наличными или через депозит
 enum PaymentMethod {
