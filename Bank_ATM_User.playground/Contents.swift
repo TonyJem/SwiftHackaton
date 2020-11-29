@@ -267,8 +267,38 @@ class ATM {
             someBank.putCashDeposit(topUp: cash)
             someBank.showTopUpAccount(cash: cash)
             
-        case .userPressedTopUpPhoneBalanceBtn:
+        case let.userPressedTopUpPhoneBalanceBtn(phoneNumber: phoneNumber,
+                                                 payment: payment,
+                                                 amount: amount):
             //      б. Проверяется корректно ли введен номер телефона:
+            guard someBank.checkUserPhone(phone: phoneNumber) else {
+                someBank.showError(error: .wrongPhoneNr)
+                return
+            }
+            
+            switch payment {
+            case .byCash:
+                print("cash")
+//                check if enough cash
+//            if yes:
+//                run top up from cash
+//                show top up mobile from cash
+//             if no:
+//                call error on top up mobile from cash
+                
+            case .fromDeposite:
+                print("depo")
+            //                check if enough on deposite
+            //            if yes:
+            //                run top up from deposite
+            //                show top up mobile from deposite
+            //             if no:
+            //                call error on top up mobile from deposite
+                
+            }
+            
+            
+            
             //      в. Уточняется от куда пополнить телефон: С депозита или с наличных:
             someBank.showUserToppedUpMobilePhoneDeposite(deposit: 88)
 //            or
