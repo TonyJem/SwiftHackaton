@@ -19,8 +19,8 @@ Swift Section Final Assignment (iOS development cource)
 ##  User Data:
 
 Как представлены пользовательские данные:
-
-`<// Абстракция данных пользователя
+```swift
+// Абстракция данных пользователя
 protocol UserData {
   var userName: String { get }    //Имя пользователя
   var userCardId: String { get }   //Номер карты
@@ -29,4 +29,5 @@ protocol UserData {
   var userBankDeposit: Float { get set}   //Банковский депозит
   var userPhone: String { get }       //Номер телефона
   var userPhoneBalance: Float { get set}    //Баланс телефона
-}>`
+}
+```
