@@ -400,3 +400,15 @@ let atm550 = ATM(userCardId: "3339 0039 3312 2222",
                  someBank: bankClient,
                  action: .userPressedCashWithdrawalBtn(cash: 5000)
                  )
+
+let atm560 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedTopUpBankDepositBtn(cash: 234+994)
+                 )
+
+let atm660 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedTopUpBankDepositBtn(cash: 2001)
+                 )
