@@ -312,6 +312,7 @@ let egor_pupkin: User = User(userName: "Egor Pupkin",
 
 let bankClient = Bank(user: egor_pupkin)
 
+// MARK: - RUN Tests: -
 let atm443 = ATM(userCardId: "3339 0039 3312 2222",
                  userCardPin: 1234,
                  someBank: bankClient,
