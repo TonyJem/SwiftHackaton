@@ -1,5 +1,5 @@
 # On-line hackaton. Swift
-Swift Section Final Assignment (iOS development cource)
+"Swift" Section Final Assignment (iOS development cource)
  
 [Description](#task-description)
 
@@ -12,6 +12,10 @@ Swift Section Final Assignment (iOS development cource)
 [Server Protocol](#server-protocol)
 
 ## Task Description:
+
+<img src="/ToDoList-screens/tableViews.png" width="95%">
+<br>
+
 Необходимо написать программу для работы банкомата... (Use XcodePlayground)
 
 Банкомат будет взаимодействовать с пользователем и должен реализовывать четыре операции:
