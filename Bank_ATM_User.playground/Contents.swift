@@ -26,6 +26,14 @@ import UIKit
 //          Вы выбрали пополнить баланс телефона на Х сумму через наличные/с депозита. У вас списалось с депозита/с наличных и увеличилось на балансе телефона.
 
 // MARK: - Enums: -
+// Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
+enum UserActions {
+    case userPressedBalanceBtn           //Запросить баланс
+    case userPressedCashWithdrawalBtn    //Снять наличные
+    case userPressedTopUpBankDepositBtn  //Положить на депозит
+    case userPressedTopUpPhoneBalanceBtn //Пополнить счет не телефоне
+}
+
 // Виды операций, выбранных пользователем (подтверждение выбора)
 enum DescriptionTypesAvailableOperations: String {
     case queryBalance = "Вы запросили баланс на банковском депозите."
@@ -33,14 +41,6 @@ enum DescriptionTypesAvailableOperations: String {
     case queryToppedUpMobilePhoneDeposite = "Вы запросили пополнение баланса телефона с банковского депозита."
     case queryWithdrawalDeposit = "Вы запросили снятие наличных с банковского депозита."
     case queryTopUpAccount = "Вы запросили пополнение банковского депозита наличными."
-}
- 
-// Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
-enum UserActions {
-    case userPressedBalanceBtn           //Запросить баланс
-    case userPressedCashWithdrawalBtn    //Снять наличные
-    case userPressedTopUpBankDepositBtn  //Положить на депозит
-    case userPressedTopUpPhoneBalanceBtn //Пополнить счет не телефоне
 }
 
 // MARK: - Classes: -
