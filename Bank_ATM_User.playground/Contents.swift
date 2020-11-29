@@ -259,9 +259,13 @@ class ATM {
             someBank.getCashFromDeposit(cash: cash)
             someBank.showWithdrawalDeposit(cash: cash)
         
-        case .userPressedTopUpBankDepositBtn:
-        //      б. Проверка наличия наличных. Можем ли столько внести? Сумма которую вносим не должна превышать имеющуюся наличность.
-            someBank.showTopUpAccount(cash: 88)
+        case let.userPressedTopUpBankDepositBtn(cash: cash):
+            guard someBank.checkMaxUserCash(cash: cash) else {
+                someBank.showError(error: .notEnoughtCash)
+                return
+            }
+            someBank.putCashDeposit(topUp: cash)
+            someBank.showTopUpAccount(cash: cash)
             
         case .userPressedTopUpPhoneBalanceBtn:
             //      б. Проверяется корректно ли введен номер телефона:
