@@ -89,15 +89,37 @@ class Bank: BankApi {
     }
     
     func showUserToppedUpMobilePhoneDeposite(deposit: Float) {
-        
+        let report = """
+            Здравствуйте, \(user.userName),
+            \(DescriptionTypesAvailableOperations.queryToppedUpMobilePhoneDeposite.rawValue)
+            Вы пополнили баланс телефона с банковского депозита на сумму: \(deposit) рублей.
+            На банковском депозите у Вас осталось \(user.userBankDeposit) рублей.
+            Баланс вашего телефона составляет: \(user.userPhoneBalance) рублей.
+            Хорошего дня!
+            """
+        print(report)
     }
     
     func showWithdrawalDeposit(cash: Float) {
-        
+        let report = """
+            Здравствуйте, \(user.userName),
+            \(DescriptionTypesAvailableOperations.queryWithdrawalDeposit.rawValue)
+            Вам выдано \(cash) рублей наличными.
+            На банковском депозите у Вас осталось \(user.userBankDeposit) рублей.
+            Хорошего дня!
+            """
+        print(report)
     }
     
     func showTopUpAccount(cash: Float) {
-        
+        let report = """
+            Здравствуйте, \(user.userName),
+            \(DescriptionTypesAvailableOperations.queryTopUpAccount.rawValue)
+            От Вас принято \(cash) рублей наличными.
+            На банковском депозите у Вас на данный момент \(user.userBankDeposit) рублей.
+            Хорошего дня!
+            """
+        print(report)
     }
     
     func showError(error: TextErrors) {
