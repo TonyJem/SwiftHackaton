@@ -51,6 +51,8 @@ enum TextErrors: String {
     case wrongPhoneNr = "❗️ Здравствуйте, Вы неправильно ввели номер телефона."
     case notEnoughtCash = "❗️ Здравствуйте, у Вас недостаточно наличных."
     case tooLowDeposite = "❗️ Здравствуйте, у Вас нехватает средств на депозите."
+    case notEnoughtCashForPhone = "❗️ Здравствуйте, у Вас недостаточно наличных для пополнения баланса телефона."
+    case tooLowDepositeForPhone = "❗️ Здравствуйте, у Вас нехватает средств на депозите для пополнения баланса телефона."
 }
 
 //    ToDo: Можно придумать массу других ошибок, но помимнимум важно обработать все 4 действия... Подумать что может быть в них вронг
@@ -167,6 +169,10 @@ class Bank: BankApi {
             print(TextErrors.notEnoughtCash.rawValue)
         case .tooLowDeposite:
             print(TextErrors.tooLowDeposite.rawValue)
+        case .notEnoughtCashForPhone:
+            print(TextErrors.notEnoughtCashForPhone.rawValue)
+        case .tooLowDepositeForPhone:
+            print(TextErrors.tooLowDepositeForPhone.rawValue)
         }
     }
     
@@ -278,31 +284,22 @@ class ATM {
             
             switch payment {
             case .byCash:
-                print("cash")
-//                check if enough cash
-//            if yes:
-//                run top up from cash
-//                show top up mobile from cash
-//             if no:
-//                call error on top up mobile from cash
-                
+                if someBank.checkMaxUserCash(cash: amount) {
+                    someBank.topUpPhoneBalanceCash(pay: amount)
+                    someBank.showUserToppedUpMobilePhoneCash(cash: amount)
+                } else {
+                    someBank.showError(error: .notEnoughtCashForPhone)
+                }
+
             case .fromDeposite:
                 print("depo")
-            //                check if enough on deposite
-            //            if yes:
-            //                run top up from deposite
-            //                show top up mobile from deposite
-            //             if no:
-            //                call error on top up mobile from deposite
-                
+                if someBank.checkMaxAccountDeposit(withdraw: amount) {
+                    someBank.topUpPhoneBalanceDeposit(pay: amount)
+                    someBank.showUserToppedUpMobilePhoneDeposite(deposit: amount)
+                } else {
+                    someBank.showError(error: .tooLowDepositeForPhone)
+                }
             }
-            
-            
-            
-            //      в. Уточняется от куда пополнить телефон: С депозита или с наличных:
-            someBank.showUserToppedUpMobilePhoneDeposite(deposit: 88)
-//            or
-            someBank.showUserToppedUpMobilePhoneCash(cash: 88)
         }
     }
 }
