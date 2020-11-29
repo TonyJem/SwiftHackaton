@@ -5,9 +5,14 @@ Swift Section Final Assignment (iOS development cource)
 
 [User Data](#user-data)
 
-## Task Description:
+[Enums](#enums)
 
-Необходимо написать программу для работы банкомата. (Use XcodePlayground)
+[ATM Class](#atm-class)
+
+[Server Protocol](#server-protocol)
+
+## Task Description:
+Необходимо написать программу для работы банкомата... (Use XcodePlayground)
 
 Банкомат будет взаимодействовать с пользователем и должен реализовывать четыре операции:
 - запрос баланса на банковском депозите,
@@ -17,8 +22,7 @@ Swift Section Final Assignment (iOS development cource)
 
  
 ##  User Data:
-
-Как представлены пользовательские данные:
+Как представлены пользовательские данные...
 ```swift
 // Абстракция данных пользователя
 protocol UserData {
@@ -31,7 +35,8 @@ protocol UserData {
   var userPhoneBalance: Float { get set}    //Баланс телефона
 }
 ```
-Что должно быть реализовано:
+##  Enums:
+Что должно быть реализовано...
 
 ```swift
 // Тексты ошибок
@@ -54,7 +59,8 @@ enum PaymentMethod {
  
 }
 ```
-Описание банкомата:
+##  ATM Class:
+Описание банкомата...
 
 ```swift
 // Банкомат, с которым мы работаем, имеет общедоступный интерфейс sendUserDataToBank
@@ -77,8 +83,8 @@ class ATM {
   }
 }
 ```
-
-Описание «сервера» :
+##  Server Protocol:
+Описание «сервера»...
 
 ```swift
 // Протокол по работе с банком предоставляет доступ к данным пользователя зарегистрированного в банке
