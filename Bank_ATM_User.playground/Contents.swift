@@ -47,12 +47,12 @@ enum DescriptionTypesAvailableOperations: String {
 
 // Тексты ошибок
 enum TextErrors: String {
-    case wrongLogin = "❗️ Здравствуйте, Вы неправильно ввели номер карты или PIN."
-    case wrongPhoneNr = "❗️ Здравствуйте, Вы неправильно ввели номер телефона."
-    case notEnoughtCash = "❗️ Здравствуйте, у Вас недостаточно наличных."
-    case tooLowDeposite = "❗️ Здравствуйте, у Вас нехватает средств на депозите."
-    case notEnoughtCashForPhone = "❗️ Здравствуйте, у Вас недостаточно наличных для пополнения баланса телефона."
-    case tooLowDepositeForPhone = "❗️ Здравствуйте, у Вас нехватает средств на депозите для пополнения баланса телефона."
+    case wrongLogin = "❗️🟣 Здравствуйте, Вы неправильно ввели номер карты или PIN."
+    case wrongPhoneNr = "❗️🔵 Здравствуйте, Вы неправильно ввели номер телефона."
+    case notEnoughtCash = "❗️🟡 Здравствуйте, у Вас недостаточно наличных."
+    case tooLowDeposite = "❗️🟠 Здравствуйте, у Вас нехватает средств на депозите."
+    case notEnoughtCashForPhone = "❗️🔴 Здравствуйте, у Вас недостаточно наличных для пополнения баланса телефона."
+    case tooLowDepositeForPhone = "❗️🟤 Здравствуйте, у Вас нехватает средств на депозите для пополнения баланса телефона."
 }
 
 // Способ оплаты/пополнения наличными или через депозит
@@ -137,6 +137,7 @@ class Bank: BankApi {
             Вам выдано \(cash) рублей наличными.
             На банковском депозите у Вас осталось \(user.userBankDeposit) рублей.
             Хорошего дня!
+            (🔸DoubleCheck: В кармане стало: \(user.userCash) рублей)
             """
         print(report)
     }
@@ -148,6 +149,7 @@ class Bank: BankApi {
             От Вас принято \(cash) рублей наличными.
             На банковском депозите у Вас на данный момент \(user.userBankDeposit) рублей.
             Хорошего дня!
+            (🔹DoubleCheck: В кармане стало: \(user.userCash) рублей)
             """
         print(report)
     }
@@ -377,38 +379,59 @@ let bankClient = Bank(user: egor_pupkin)
 
 
 // MARK: - RUN Tests: -
+//  .userPressedBalanceBtn is Selected:
+print("Normal User, .userPressedBalanceBtn is Selected:")
 let atm443 = ATM(userCardId: "3339 0039 3312 2222",
                  userCardPin: 1234,
                  someBank: bankClient,
                  action: .userPressedBalanceBtn
                  )
 
+print("\n Wrong User's userCardId, .userPressedBalanceBtn Selected:")
 let atm445 = ATM(userCardId: "3339 0039 3312 222X",
                  userCardPin: 1234,
                  someBank: bankClient,
                  action: .userPressedBalanceBtn
                  )
 
-let atm450 = ATM(userCardId: "3339 0039 3312 2222",
-                 userCardPin: 1234,
+print("\n Wrong User's userCardPin, .userPressedBalanceBtn is Selected:")
+let atm444 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1238,
                  someBank: bankClient,
-                 action: .userPressedCashWithdrawalBtn(cash: 994)
+                 action: .userPressedBalanceBtn
                  )
 
-let atm550 = ATM(userCardId: "3339 0039 3312 2222",
-                 userCardPin: 1234,
-                 someBank: bankClient,
-                 action: .userPressedCashWithdrawalBtn(cash: 5000)
-                 )
+////  .userPressedCashWithdrawalBtn is Selected:
+//print("\n .userPressedCashWithdrawalBtn is Selected: Acceptable amount of cash queried.")
+//print("Should print: Balans: 4994.4 - 994 = 4000.4 :")
+//let atm450 = ATM(userCardId: "3339 0039 3312 2222",
+//                 userCardPin: 1234,
+//                 someBank: bankClient,
+//                 action: .userPressedCashWithdrawalBtn(cash: 994)
+//                 )
+//print("\n .userPressedCashWithdrawalBtn is Selected: TooBIG amount of cash queried.")
+//print("Should Error: .tooLowDeposite 🟠")
+//let atm550 = ATM(userCardId: "3339 0039 3312 2222",
+//                 userCardPin: 1234,
+//                 someBank: bankClient,
+//                 action: .userPressedCashWithdrawalBtn(cash: 5000)
+//                 )
 
-let atm560 = ATM(userCardId: "3339 0039 3312 2222",
-                 userCardPin: 1234,
-                 someBank: bankClient,
-                 action: .userPressedTopUpBankDepositBtn(cash: 234+994)
-                 )
-
-let atm660 = ATM(userCardId: "3339 0039 3312 2222",
-                 userCardPin: 1234,
-                 someBank: bankClient,
-                 action: .userPressedTopUpBankDepositBtn(cash: 2001)
-                 )
+////  .userPressedTopUpBankDepositBtn is Selected:
+//print("\n .userPressedTopUpBankDepositBtn is Selected: Acceptable amount of cash queried.")
+//print("Should print: Balans: 4000.4 + 994 = 4994.4 :")
+//print("DoubleCheck: Cash: 4000.4 + 994 = 4994.4 :")
+//
+//let atm560 = ATM(userCardId: "3339 0039 3312 2222",
+//                 userCardPin: 1234,
+//                 someBank: bankClient,
+//                 action: .userPressedTopUpBankDepositBtn(cash: 994)
+//                 )
+//
+//print("\n .userPressedTopUpBankDepositBtn is Selected: TooBIG amount of cash queried.")
+//print("Should Error: .tooLowDeposite 🟠")
+//let atm660 = ATM(userCardId: "3339 0039 3312 2222",
+//                 userCardPin: 1234,
+//                 someBank: bankClient,
+//                 action: .userPressedTopUpBankDepositBtn(cash: 2001)
+//                 )
