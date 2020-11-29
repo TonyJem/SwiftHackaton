@@ -147,6 +147,8 @@ class Bank: BankApi {
         }
     }
     
+    func checkCurrentUser(userCardId: String, userCardPin: Int) -> Bool {
+        return userCardId == user.userCardId && userCardPin == user.userCardPin
     }
     
     func checkUserPhone(phone: String) -> Bool {
@@ -159,10 +161,6 @@ class Bank: BankApi {
     
     func checkMaxAccountDeposit(withdraw: Float) -> Bool {
         return withdraw <= user.userBankDeposit
-    }
-    
-    func checkCurrentUser(userCardId: String, userCardPin: Int) -> Bool {
-        return userCardId == user.userCardId && userCardPin == user.userCardPin
     }
     
     func topUpPhoneBalanceCash(pay: Float) {
@@ -322,6 +320,8 @@ let egor_pupkin: User = User(userName: "Egor Pupkin",
                                  userPhoneBalance: -34.44)
 
 let bankClient = Bank(user: egor_pupkin)
+
+
 
 // MARK: - RUN Tests: -
 let atm443 = ATM(userCardId: "3339 0039 3312 2222",
