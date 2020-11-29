@@ -69,7 +69,7 @@ class Bank: BankApi {
     func showUserBalance() {
         let report = """
             Здравствуйте, \(user.userName),
-            \(DescriptionTypesAvailableOperations.askedForBalance.rawValue)
+            \(DescriptionTypesAvailableOperations.queryBalance.rawValue)
             Баланс вашего депозита составляет: \(user.userBankDeposit) рублей.
             Хорошего дня!
             """
@@ -77,7 +77,15 @@ class Bank: BankApi {
     }
     
     func showUserToppedUpMobilePhoneCash(cash: Float) {
-        
+        let report = """
+            Здравствуйте, \(user.userName),
+            \(DescriptionTypesAvailableOperations.queryToppedUpMobilePhoneCash.rawValue)
+            Вы пополнили баланс телефона наличными на сумму: \(cash) рублей.
+            У вас осталось \(user.userCash) рублей наличными.
+            Баланс вашего телефона составляет: \(user.userPhoneBalance) рублей.
+            Хорошего дня!
+            """
+        print(report)
     }
     
     func showUserToppedUpMobilePhoneDeposite(deposit: Float) {
@@ -187,20 +195,6 @@ enum TextErrors: String { // Тексты ошибок
  
 // Виды операций, выбранных пользователем (подтверждение выбора)
 enum DescriptionTypesAvailableOperations: String {
-   case askedForBalance = "Вы запросили балланс"
-// Описание типов возможных операций:
-//    Здесь должны лежать тексты всех возможных операций
-//    "Вы запросили балланс ..."
-//    "Вы запросили снять наличные ..."
-//    "Вы запросили пополнить депозит ..."
-    
-//    Другими словами: В этом енуме содержатся все ответы на выбор пользователя
-    
-    
-    
-    
-    
-//    ЭТО я сюда вставил, ToDo: перекинуть в релевантное место
     case queryBalance = "Вы запросили баланс на банковском депозите."
     case queryToppedUpMobilePhoneCash = "Вы запросили пополнение баланса телефона наличными."
     case queryToppedUpMobilePhoneDeposite = "Вы запросили пополнение баланса телефона с банковского депозита."
