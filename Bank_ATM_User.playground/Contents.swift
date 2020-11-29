@@ -330,3 +330,7 @@ print(egor_pupkin.userName)
 print(egor_pupkin.userCardId)
 
 bankClient.showUserBalance()
+bankClient.showUserToppedUpMobilePhoneCash(cash: 10.0)
+bankClient.showUserToppedUpMobilePhoneDeposite(deposit: 14.88)
+bankClient.showWithdrawalDeposit(cash: 15.0)
+bankClient.showTopUpAccount(cash: 20.0)
