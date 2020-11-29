@@ -28,10 +28,10 @@ import UIKit
 // MARK: - Enums: -
 // Действия, которые пользователь может выбирать в банкомате (имитация кнопок)
 enum UserActions {
-    case userPressedBalanceBtn           //Запросить баланс
-    case userPressedCashWithdrawalBtn    //Снять наличные
-    case userPressedTopUpBankDepositBtn  //Положить на депозит
-    case userPressedTopUpPhoneBalanceBtn //Пополнить счет не телефоне
+    case userPressedBalanceBtn //Запросить баланс
+    case userPressedCashWithdrawalBtn (cash: Float)   //Снять наличные
+    case userPressedTopUpBankDepositBtn (cash: Float) //Положить на депозит
+    case userPressedTopUpPhoneBalanceBtn (payment: PaymentMethod, amount: Float) //Пополнить счет на телефоне
 }
 
 // Виды операций, выбранных пользователем (подтверждение выбора)
@@ -60,10 +60,8 @@ enum TextErrors: String {
 
 // Способ оплаты/пополнения наличными или через депозит
 enum PaymentMethod {
-    case payWithCash
-    case payFromDeposite
-    
-//  ToDo: Подсказка: Должно быть перечисление с определенным вложенным типом. Вложеный тип и будет, то что мы принимаем какое то действие.
+    case byCash
+    case fromDeposite
 }
 
 // MARK: - Classes: -
