@@ -320,14 +320,10 @@ let atm443 = ATM(userCardId: "3339 0039 3312 2222",
 //                 requiredAmount: 15.0
                  )
 
-// MARK: - RUN Tests: -
-
-
-print(egor_pupkin.userName)
-print(egor_pupkin.userCardId)
-
-bankClient.showUserBalance()
-bankClient.showUserToppedUpMobilePhoneCash(cash: 10.0)
-bankClient.showUserToppedUpMobilePhoneDeposite(deposit: 14.88)
-bankClient.showWithdrawalDeposit(cash: 15.0)
-bankClient.showTopUpAccount(cash: 20.0)
+let atm445 = ATM(userCardId: "3339 0039 3312 222X",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedBalanceBtn
+//                 paymentMethod: .payFromDeposite,
+//                 requiredAmount: 15.0
+                 )
