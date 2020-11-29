@@ -31,7 +31,9 @@ enum UserActions {
     case userPressedBalanceBtn //Запросить баланс
     case userPressedCashWithdrawalBtn(cash: Float)   //Снять наличные
     case userPressedTopUpBankDepositBtn(cash: Float) //Положить на депозит
-    case userPressedTopUpPhoneBalanceBtn(payment: PaymentMethod, amount: Float) //Пополнить счет на телефоне
+    case userPressedTopUpPhoneBalanceBtn(phoneNumber: String,
+                                         payment: PaymentMethod,
+                                         amount: Float) //Пополнить счет на телефоне
 }
 
 // Виды операций, выбранных пользователем (подтверждение выбора)
