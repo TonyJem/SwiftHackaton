@@ -328,14 +328,22 @@ let atm443 = ATM(userCardId: "3339 0039 3312 2222",
                  userCardPin: 1234,
                  someBank: bankClient,
                  action: .userPressedBalanceBtn
-//                 paymentMethod: .payFromDeposite,
-//                 requiredAmount: 15.0
                  )
 
 let atm445 = ATM(userCardId: "3339 0039 3312 222X",
                  userCardPin: 1234,
                  someBank: bankClient,
                  action: .userPressedBalanceBtn
-//                 paymentMethod: .payFromDeposite,
-//                 requiredAmount: 15.0
+                 )
+
+let atm450 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedCashWithdrawalBtn(cash: 994)
+                 )
+
+let atm550 = ATM(userCardId: "3339 0039 3312 2222",
+                 userCardPin: 1234,
+                 someBank: bankClient,
+                 action: .userPressedCashWithdrawalBtn(cash: 5000)
                  )
