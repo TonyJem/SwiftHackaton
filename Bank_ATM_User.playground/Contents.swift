@@ -139,19 +139,19 @@ class Bank: BankApi {
     }
     
     func checkUserPhone(phone: String) -> Bool {
-        return false
+        return phone == user.userPhone
     }
     
     func checkMaxUserCash(cash: Float) -> Bool {
-        return false
+        return cash <= user.userCash
     }
     
     func checkMaxAccountDeposit(withdraw: Float) -> Bool {
-        return false
+        return withdraw <= user.userBankDeposit
     }
     
     func checkCurrentUser(userCardId: String, userCardPin: Int) -> Bool {
-        return false
+        return userCardId == user.userCardId && userCardPin == user.userCardPin
     }
     
     func topUpPhoneBalanceCash(pay: Float) {
