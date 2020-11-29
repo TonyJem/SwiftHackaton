@@ -234,16 +234,41 @@ class ATM {
                                 payment: paymentMethod)
     }
  
-  public final func sendUserDataToBank(userCardId: String,
-                                       userCardPin: Int,
-                                       actions: UserActions,
-                                       payment: PaymentMethod?)
-  {
-//   ToDO: Add code here...
-  }
-}
-
-// MARK: - Not finished Enums: -
+    public final func sendUserDataToBank(userCardId: String,
+                                         userCardPin: Int,
+                                         actions: UserActions,
+                                         payment: PaymentMethod?)
+    {
+        guard someBank.checkCurrentUser(userCardId: userCardId,
+                                        userCardPin: userCardPin) else {
+            someBank.showError(error: .wrongLogin)
+            return
+        }
+        
+        switch actions {
+        case .userPressedBalanceBtn:
+            someBank.showUserBalance()
+            
+        case let.userPressedCashWithdrawalBtn(cash: cash):
+            guard someBank.checkMaxAccountDeposit(withdraw: cash) else {
+                someBank.showError(error: .tooLowDeposite)
+                return
+            }
+            someBank.getCashFromDeposit(cash: cash)
+            someBank.showWithdrawalDeposit(cash: cash)
+        
+        case .userPressedTopUpBankDepositBtn:
+        //      б. Проверка наличия наличных. Можем ли столько внести? Сумма которую вносим не должна превышать имеющуюся наличность.
+            someBank.showTopUpAccount(cash: 88)
+            
+        case .userPressedTopUpPhoneBalanceBtn:
+            //      б. Проверяется корректно ли введен номер телефона:
+            //      в. Уточняется от куда пополнить телефон: С депозита или с наличных:
+            someBank.showUserToppedUpMobilePhoneDeposite(deposit: 88)
+//            or
+            someBank.showUserToppedUpMobilePhoneCash(cash: 88)
+        }
+    }
 }
 
 // MARK: - Protocols: -
