@@ -13,7 +13,7 @@
 
 ## Task Description:
 
-<img src="/SwiftHackaton_images/ATM.jpg" width="95%">
+<img src="/SwiftHackaton_images/ATM.jpg" width="33%">
 <br>
 
 Необходимо написать программу для работы банкомата... (Use XcodePlayground)
